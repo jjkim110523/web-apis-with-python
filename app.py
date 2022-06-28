@@ -9,8 +9,7 @@ app = Flask(__name__)
 
 @app.get("/")
 def index():
-    response = {"usage": "/dict?=<word>"}
-    return jsonify(response)
+    return render_template("index.html")
 
 
 @app.get("/dict")
