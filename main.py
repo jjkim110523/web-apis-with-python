@@ -2,7 +2,7 @@ from bin.filters import apply_filter
 from typing import List, Optional
 from fastapi import FastAPI, File, UploadFile
 from fastapi.encoders import jsonable_encoder
-from fastapi.responses import FileResponse
+from fastapi.responses import StreamingResponse, FileResponse
 import io
 
 
@@ -52,4 +52,4 @@ def image_filter(filter: str, img: UploadFile = File(...)):
 
     filtered_image = apply_filter(img.file, filter)
 
-    return FileResponse(filtered_image, media_type="image/jpeg")
+    return StreamingResponse(filtered_image, media_type="image/jpeg")
